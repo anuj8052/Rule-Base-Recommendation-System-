@@ -4,10 +4,6 @@
 # ### Importing Libraries
 
 # #### Imported important libraries for the data preprocessing as well as model building
-
-# In[1]:
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -16,17 +12,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 import seaborn as sns
 
-
 # 1. the mlxtend library that provides implementations of various frequent pattern mining algorithms, including the Apriori algorithm.
-
-# In[2]:
-
-
 pip install mlxtend
-
-
-# In[3]:
-
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 500)
@@ -35,160 +22,62 @@ from mlxtend.frequent_patterns import apriori, association_rules
 
 
 # ### Data Prerocessing
-
-# ##### accessing the dataset from the online retail datasheet for the year 2010-2011
-
-# In[4]:
-
-
+Accessing the dataset from the online retail datasheet for the year 2010-2011
+# In[4] :
 df = pd.read_excel("Downloads/online_retail_II.xlsx", sheet_name = 'Year 2010-2011')
-
-
 # In[5]:
-
-
 df.head()
-
-
 # In[6]:
-
-
 df.info()
-
-
 # In[7]:
-
-
 df.shape
-
-
 # In[8]:
-
-
 df.describe()
-
-
 # In[9]:
-
-
 # !pip install openpyxl
-
-
 # In[10]:
-
-
-# checking for the unique values in each column for the futher analysis
-
-
+# checking for the unique values in each column for the further analysis
 # In[11]:
-
-
 df['Quantity'].nunique()
-
-
 # In[12]:
-
-
 df['StockCode'].unique()
-
-
 # In[13]:
-
-
 df['StockCode'].nunique()
-
-
 # In[14]:
-
-
 df['Country'].unique()
-
-
 # In[15]:
-
-
 df['Country'].nunique()
-
-
 # In[16]:
-
-
 df['Customer ID'].unique() 
-
-
 # In[17]:
-
-
 df['Customer ID'].nunique()
-
-
-# ### Checking for Missing or NaN values
-
+# Checking for Missing or NaN values
 # In[25]:
-
-
 df.isna().sum()
-
-
 # 1. As we can see in the Description Column there 1454 NaN values
 # 2. for the column Customer ID there are 135080 NaN vlaues or we can say that 135080 rows
 # 3. To handle the missing values or NaN values we can directly drop or fill while seeing previous data
-
 # In[26]:
-
-
 df.isnull().head()
-
-
 # ### creating a mask i.e boolian mask for those rows which has NaN or null values
 # 1. extracting alll the rows having NaN or missing values
-
 # In[27]:
-
-
 mask = df.isnull().any(axis = 1)
 rows_with_nan = df[mask]
-
-
 # In[28]:
-
-
 rows_with_nan
-
-
 # In[29]:
-
-
 rows_with_nan.shape
-
-
 # 1. As we can see that we have NaN value rows more than 1 lakh i.e 135080
 # 2. For our analysis we will check for the upper outlier and lower outlier vlaues in the dataset and according to we will drop the values
-
 # In[30]:
-
-
 rows_with_nan.head()
-
-
 # In[31]:
-
-
 rows_with_nan.info()
-
-
 # In[32]:
-
-
 data = df.copy()
-
-
 # In[33]:
-
-
 data.head()
-
-
 # In[34]:
 
 
@@ -621,26 +510,6 @@ for product in product_list:
 for recom in recom_list:
   print(check_id(df, recom))
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
